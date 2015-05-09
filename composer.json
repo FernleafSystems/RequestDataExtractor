@@ -1,0 +1,21 @@
+{
+    "name": "carlosreig/request-data-extactor",
+    "description": "A simple class that extracts the user IP, the user browser and the user operating system from the HTTP Request",
+    "require": {
+        "symfony/http-foundation": "~2.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.6"
+    },
+    "autoload": {
+      "psr-4": {
+        "CarlosReig\\RequestDataExtractor\\": "src/"
+      }
+    },
+    "authors": [
+        {
+            "name": "Carlos Reig Matut",
+            "email": "unstatu@gmail.com"
+        }
+    ]
+}
