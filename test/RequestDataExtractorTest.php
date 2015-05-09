@@ -12,6 +12,26 @@ class RequestDataExtractorTest extends \PHPUnit_Framework_TestCase {
 		$this->assertInstanceOf( 'CarlosReig\RequestDataExtractor\RequestDataExtractor', $oDataExtractor );
 	}
 
+	public function testItGetsTheIP() {
+		$aDefaultData = $this->getDefaultData();
+		$oDataExtractor = new RequestDataExtractor( $aDefaultData );
+		$this->assertEquals( '1.1.1.1', $oDataExtractor->getUserIP() );
+
+		$aDefaultData['REMOTE_ADDR'] = '2.2.2.2';
+		$oDataExtractor = new RequestDataExtractor( $aDefaultData );
+		$this->assertEquals( '2.2.2.2', $oDataExtractor->getUserIP() );
+	}
+
+	/**
+	 * @expectedException \CarlosReig\RequestDataExtractor\Exception\UserIpCannotBeExtracted
+	 */
+	public function testItThrowsAnExceptionIfIpNotAvailable() {
+		$aDefaultData = $this->getDefaultData();
+		unset( $aDefaultData['REMOTE_ADDR'] );
+		$oDataExtractor = new RequestDataExtractor( $aDefaultData );
+		$oDataExtractor->getUserIP();
+	}
+
 	protected function getDefaultData() {
 		return array(
 			'REMOTE_ADDR' => '1.1.1.1',
