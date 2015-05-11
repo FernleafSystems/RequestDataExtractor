@@ -1,6 +1,7 @@
 {
     "name": "carlosreig/request-data-extractor",
     "description": "A simple class that extracts the user IP, the user browser and the user operating system from the HTTP Request",
+    "version": "0.1",
     "require": {
         "symfony/http-foundation": "~2.6",
         "donatj/phpuseragentparser": "0.3.6"
