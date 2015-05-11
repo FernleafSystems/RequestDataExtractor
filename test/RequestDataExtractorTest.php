@@ -32,6 +32,38 @@ class RequestDataExtractorTest extends \PHPUnit_Framework_TestCase {
 		$oDataExtractor->getUserIP();
 	}
 
+	public function testItGetsTheBrowser() {
+		$aDefaultData = $this->getDefaultData();
+		$oDataExtractor = new RequestDataExtractor( $aDefaultData );
+		$this->assertEquals( 'Chrome', $oDataExtractor->getUserBrowser() );
+	}
+
+	/**
+	 * @expectedException \CarlosReig\RequestDataExtractor\Exception\BrowserCannotBetExtracted
+	 */
+	public function testItThrowsAnExceptionIfBrowserNotAvailable() {
+		$aDefaultData = $this->getDefaultData();
+		unset( $aDefaultData['HTTP_USER_AGENT'] );
+		$oDataExtractor = new RequestDataExtractor( $aDefaultData );
+		$oDataExtractor->getUserBrowser();
+	}
+
+	public function testItGetsTheOperatingSystem() {
+		$aDefaultData = $this->getDefaultData();
+		$oDataExtractor = new RequestDataExtractor( $aDefaultData );
+		$this->assertEquals( 'Linux', $oDataExtractor->getUserOperatingSystem() );
+	}
+
+	/**
+	 * @expectedException \CarlosReig\RequestDataExtractor\Exception\OperatingSystemCannotBetExtracted
+	 */
+	public function testItThrowsAnExceptionIfOperatingSystemNotAvailable() {
+		$aDefaultData = $this->getDefaultData();
+		unset( $aDefaultData['HTTP_USER_AGENT'] );
+		$oDataExtractor = new RequestDataExtractor( $aDefaultData );
+		$oDataExtractor->getUserOperatingSystem();
+	}
+
 	protected function getDefaultData() {
 		return array(
 			'REMOTE_ADDR' => '1.1.1.1',
