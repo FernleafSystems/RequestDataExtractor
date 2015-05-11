@@ -7,8 +7,6 @@ use CarlosReig\RequestDataExtractor\Exception\OperatingSystemCannotBetExtracted;
 use CarlosReig\RequestDataExtractor\Exception\UserIpCannotBeExtracted;
 use Symfony\Component\HttpFoundation\Request;
 
-require_once __DIR__ . "/../vendor/autoload.php";
-
 class RequestDataExtractor {
 
 	protected $aServerVariables;
